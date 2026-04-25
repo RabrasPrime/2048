@@ -1,7 +1,17 @@
 #include "game.h"
+#include "libft.h"
 #include <ncurses.h>
 #include <stdlib.h>
 #include <time.h>
+#include <signal.h>
+
+volatile int g_running = 1;
+
+static void handle_sigint(int sig)
+{
+    (void)sig;
+    g_running = 0;
+}
 
 t_game  *game_init(int board_size)
 {
@@ -77,18 +87,33 @@ void    game_destroy(t_game *game)
     free(game);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
     int     key;
     t_game  *game;
     int     moved;
+    int     size;
 
-    game = game_init(5);
+    if (argc > 2)
+    {
+        ft_printf("Error: wrong number of arguments \n");
+        return (1);
+    }
+    else if (argc != 2)
+        size = 4;
+    else
+        size = ft_atoi(argv[1]);
+    if (size < 4 || size > 5)
+    {
+        ft_printf("Error: wrong size \n");
+        return (1);
+    }
+    game = game_init(size);
     if (!game)
         return (1);
     screen_init(game);
-
-    while (TRUE)
+    signal(SIGINT, handle_sigint);
+    while (g_running)
     {
         key = getch();
         moved = 0;

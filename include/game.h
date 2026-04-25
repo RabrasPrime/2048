@@ -10,6 +10,8 @@ enum e_const
     WIN_VALUE = 2048
 };
 
+extern volatile int g_running;
+
 typedef struct s_game
 {
     int **mat;

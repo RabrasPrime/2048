@@ -10,7 +10,7 @@ t_game *game_init(int board_size)
 	if (!game)
 		return NULL;
 
-	game->mat = malloc(5 * sizeof(int *));
+	game->mat = malloc(board_size * sizeof(int *));
 	if (!game->mat)
 	{
 		free(game);
@@ -19,7 +19,7 @@ t_game *game_init(int board_size)
 
 	for (int i = 0; i < board_size; i++)
 	{
-		game->mat[i] = malloc(5 * sizeof(int));
+		game->mat[i] = malloc(board_size * sizeof(int));
 		if (!game->mat[i])
 		{
 			i--;
@@ -52,13 +52,17 @@ int main()
 	t_game	*game;
 
 	initscr();
-	timeout(50);
+	start_color();
+	use_default_colors();
+	timeout(100);
 	keypad(stdscr, TRUE);
+	init_ncurses_colors();
 	game = game_init(5);
 	if (!game)
 		return 1;
 
-	game->mat[0][0] = 16384;
+	game->mat[0][0] = 8;
+	game->mat[0][1] = 4;
 	while (TRUE)
 	{
 		key = getch();

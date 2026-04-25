@@ -28,8 +28,7 @@ DEPS_BONUS        =   $(patsubst %.c, $(BUILD_DIR)%.d, $(SRC_BONUS))
 
 #=-=-=-=-=-=-ROOT-=-=-=-=-=#
 
-SRC =   main.c		\
-		ncurses.c
+SRC =   main.c
 
 #=-=-=-=-=-=-DIRECTION-=-=-=-=-=#
 
@@ -45,6 +44,14 @@ SRC +=  $(addprefix $(STATUS_GAME_DIR), $(STATUS_GAME_SRC))
 
 STATUS_GAME_DIR    =   status_game/
 STATUS_GAME_SRC    =   status_game.c \
+
+#=-=-=-=-=-=-NCURSES-=-=-=-=-=#
+
+SRC +=  $(addprefix $(NCURSES_DIR), $(NCURSES_SRC))
+
+STATUS_GAME_DIR    =	ncurses/
+STATUS_GAME_SRC    =	ncurses.c	\
+						colors.c
 
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 

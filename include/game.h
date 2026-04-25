@@ -30,4 +30,6 @@ int is_game_over(int **mat, int size);
 
 /*=-=-=-=-=-=-DRAWING-=-=-=-=-=-=*/
 
-int	draw_game(t_game *game);
+int		draw_game(t_game *game);
+void	init_ncurses_colors(void);
+int		pair_from_value(int value);

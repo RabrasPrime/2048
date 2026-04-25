@@ -41,7 +41,7 @@ t_game  *game_init(int board_size)
 	return game;
 }
 
-void screen_init()
+void screen_init(t_game *game)
 {
 	srand(time(NULL));
     initscr();
@@ -70,23 +70,23 @@ int main(void)
     t_game  *game;
     int     moved;
 
-    game = game_init(5);
+    game = game_init(4);
     if (!game)
         return (1);
-    screen_init();
+    screen_init(game);
 
     while (TRUE)
     {
         key = getch();
         moved = 0;
         if (key == KEY_UP)
-            moved = to_up(game->mat, game->size);
+            moved = to_up(game->mat, game->size, &game->score);
         else if (key == KEY_DOWN)
-            moved = to_down(game->mat, game->size);
+            moved = to_down(game->mat, game->size, &game->score);
         else if (key == KEY_LEFT)
-            moved = to_left(game->mat, game->size);
+            moved = to_left(game->mat, game->size, &game->score);
         else if (key == KEY_RIGHT)
-            moved = to_right(game->mat, game->size);
+            moved = to_right(game->mat, game->size, &game->score);
 
         if (moved)
         {

@@ -93,6 +93,7 @@ int main(int argc, char **argv)
     t_game  *game;
     int     moved;
     int     size;
+    int     won = 0;
 
     if (argc > 2)
     {
@@ -132,15 +133,25 @@ int main(int argc, char **argv)
         {
             generate_num(game->mat, game->size);
             draw_game(game);
-        }
 
-        if (is_game_over(game->mat, game->size))
-        {
-            mvprintw(game->size + 2, 0, "GAME OVER! Score: %d", game->score);
-            refresh();
-            timeout(-1);
-            getch();
-            break ;
+            if (!won)
+            {
+                if (has_won(game->mat, game->size))
+                {
+                    won = 1;
+                    mvprintw((LINES - 2) / 2, (COLS - 49) / 2, "VICTORY! Score: %d, press any button to continue", game->score);
+                    refresh();
+                }
+            }
+
+            if (is_game_over(game->mat, game->size))
+            {
+                mvprintw(game->size + 2, 0, "GAME OVER! Score: %d", game->score);
+                refresh();
+                timeout(-1);
+                getch();
+                break ;
+            }
         }
     }
     endwin();

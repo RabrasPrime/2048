@@ -7,7 +7,7 @@
 
 enum e_const
 {
-    WIN_VALUE = 2048
+    WIN_VALUE = 2
 };
 
 extern volatile int g_running;
@@ -31,11 +31,14 @@ int to_down(int **mat, int size, int *score);
 /*=-=-=-=-=-=-STATUS-=-=-=-=-=-=*/
 
 int is_game_over(int **mat, int size);
+int has_won(int **mat, int size);
 
 /*=-=-=-=-=-=-DRAWING-=-=-=-=-=-=*/
 
 int		draw_game(t_game *game);
 void	init_ncurses_colors(void);
 int		pair_from_value(int value);
+
+/*=-=-=-=-=-=-GENERATION-=-=-=-=-=-=*/
 
 void generate_num(int **mat, int size);

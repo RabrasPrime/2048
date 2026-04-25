@@ -72,24 +72,18 @@ int main(void)
         key = getch();
         moved = 0;
         if (key == KEY_UP)
-            moved = 1;
+            moved = to_up(game->mat, game->size);
         else if (key == KEY_DOWN)
-            moved = 1;
+            moved = to_down(game->mat, game->size);
         else if (key == KEY_LEFT)
-            moved = 1;
+            moved = to_left(game->mat, game->size);
         else if (key == KEY_RIGHT)
-            moved = 1;
-        if (key == KEY_UP)
-            to_up(game->mat, game->size);
-        else if (key == KEY_DOWN)
-            to_down(game->mat, game->size);
-        else if (key == KEY_LEFT)
-            to_left(game->mat, game->size);
-        else if (key == KEY_RIGHT)
-            to_right(game->mat, game->size);
+            moved = to_right(game->mat, game->size);
         if (moved)
+        {
             generate_num(game->mat, game->size);
-        draw_game(game);
+            draw_game(game);
+        }
         if (is_game_over(game->mat, game->size))
         {
             mvprintw(game->size + 2, 0, "GAME OVER! Score: %d", game->score);

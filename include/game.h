@@ -20,10 +20,10 @@ typedef struct s_game
 
 void transpose(int **mat, int size);
 void reverse_rows(int **mat, int size);
-void to_left(int **mat, int size);
-void to_right(int **mat, int size);
-void to_up(int **mat, int size);
-void to_down(int **mat, int size);
+int to_left(int **mat, int size);
+int to_right(int **mat, int size);
+int to_up(int **mat, int size);
+int to_down(int **mat, int size);
 
 /*=-=-=-=-=-=-STATUS-=-=-=-=-=-=*/
 

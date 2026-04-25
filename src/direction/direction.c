@@ -2,11 +2,12 @@
 #include "libft.h"
 #include <limits.h>
 
-static void compact(int *row, int size)
+static int  compact(int *row, int size)
 {
     int tmp[size];
     int pos;
     int j;
+    int changed;
 
     ft_memset(tmp, 0, size * sizeof(int));
     pos = 0;
@@ -17,19 +18,22 @@ static void compact(int *row, int size)
             tmp[pos++] = row[j];
         j++;
     }
+    changed = (ft_memcmp(row, tmp, size * sizeof(int)) != 0);
     j = 0;
     while (j < size)
     {
         row[j] = tmp[j];
         j++;
     }
+    return (changed);
 }
 
-static void merge_left(int *row, int size)
+static int  merge_left(int *row, int size)
 {
+    int changed;
     int j;
 
-    compact(row, size);
+    changed = compact(row, size);
     j = 0;
     while (j < size - 1)
     {
@@ -37,39 +41,55 @@ static void merge_left(int *row, int size)
         {
             row[j] *= 2;
             row[j + 1] = 0;
+            changed = 1;
             j++;
         }
         j++;
     }
-    compact(row, size);
+    changed |= compact(row, size);
+    return (changed);
 }
 
-void to_left(int **mat, int size)
+int to_left(int **mat, int size)
 {
+    int changed = 0;
     int i;
 
     i = 0;
     while (i < size)
-        merge_left(mat[i++], size);
+        changed |= merge_left(mat[i++], size);
+    return (changed);
 }
 
-void to_right(int **mat, int size)
+int to_right(int **mat, int size)
 {
+    int changed = 0;
+
     reverse_rows(mat, size);
-    to_left(mat, size);
+    changed |= to_left(mat, size);
     reverse_rows(mat, size);
+
+    return (changed);
 }
 
-void to_up(int **mat, int size)
+int to_up(int **mat, int size)
 {
+    int changed = 0;
+
     transpose(mat, size);
-    to_left(mat, size);
+    changed |= to_left(mat, size);
     transpose(mat, size);
+
+    return (changed);
 }
 
-void to_down(int **mat, int size)
+int to_down(int **mat, int size)
 {
+    int changed = 0;
+
     transpose(mat, size);
-    to_right(mat, size);
+    changed |= to_right(mat, size);
     transpose(mat, size);
+
+    return (changed);
 }

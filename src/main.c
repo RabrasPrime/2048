@@ -9,7 +9,6 @@ t_game  *game_init(int board_size)
     int     i;
     int     j;
 
-<<<<<<< HEAD
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return NULL;
@@ -40,7 +39,6 @@ t_game  *game_init(int board_size)
 	game->score = 0;
 
 	return game;
-=======
     game = malloc(sizeof(t_game));
     if (!game)
         return (NULL);
@@ -70,7 +68,6 @@ t_game  *game_init(int board_size)
     game->size = board_size;
     game->score = 0;
     return (game);
->>>>>>> b2acaa99a154bf849a48db99800ac9e140f9aad1
 }
 
 void    game_destroy(t_game *game)

@@ -45,22 +45,20 @@ SRC +=  $(addprefix $(STATUS_GAME_DIR), $(STATUS_GAME_SRC))
 STATUS_GAME_DIR    =   status_game/
 STATUS_GAME_SRC    =   status_game.c \
 
-<<<<<<< HEAD
 #=-=-=-=-=-=-NCURSES-=-=-=-=-=#
 
 SRC +=  $(addprefix $(NCURSES_DIR), $(NCURSES_SRC))
 
-STATUS_GAME_DIR    =	ncurses/
-STATUS_GAME_SRC    =	ncurses.c	\
+NCURSES_DIR    =	ncurses/
+NCURSES_SRC    =	ncurses.c	\
 						colors.c
-=======
+
 #=-=-=-=-=-=-GENERATION-=-=-=-=-=#
 
 SRC +=  $(addprefix $(GENERATION_DIR), $(GENERATION_SRC))
 
 GENERATION_DIR    =   generation/
 GENERATION_SRC    =   generation.c \
->>>>>>> b2acaa99a154bf849a48db99800ac9e140f9aad1
 
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 

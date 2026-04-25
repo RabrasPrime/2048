@@ -1,15 +1,8 @@
 #include "game.h"
 #include <ncurses.h>
 
-int	draw_grid(int game_size)
+int	draw_grid(int cell_w, int cell_h, int grid_w, int grid_h)
 {
-	int	cell_w = (COLS - 1) / game_size;
-	int	cell_h = (LINES - 1) / game_size;
-	int	grid_w = cell_w * game_size + 1;
-	int	grid_h = cell_h * game_size + 1;
-
-	if (game_size <= 0)
-		return (1);
 	if (cell_w < 7 || cell_h < 2)
 		return (1);
 
@@ -33,7 +26,45 @@ int	draw_grid(int game_size)
 	}
 	return (0);
 }
-int	draw_values()
+
+int	nb_len(int nb)
 {
+	int	i = 1;
+	int	len = 0;
+
+	while (nb / i != 0)
+	{
+		len++;
+		i *= 10;
+	}
+	return len;
+}
+
+int	draw_values(t_game *game, int cell_w, int cell_h)
+{
+	for (int i = 0; i < game->size; i++)
+	{
+		for (int j = 0; j < game->size; j++)
+		{
+			if (game->mat[i][j] != 0)
+				mvprintw(cell_h * (i + 1) - cell_h / 2,
+			 			cell_w * (j + 1) - cell_w / 2 - nb_len(game->mat[i][j]) / 2,
+						"%d", game->mat[i][j]);
+		}
+	}
 	return 0;
+}
+
+int	draw_game(t_game *game)
+{
+	int	cell_w = (COLS - 1) / game->size;
+	int	cell_h = (LINES - 1) / game->size;
+	int	grid_w = cell_w * game->size + 1;
+	int	grid_h = cell_h * game->size + 1;
+
+	clear();
+	if (draw_grid(cell_w, cell_h, grid_w, grid_h) == 0)
+		draw_values(game, cell_w, cell_h);
+
+	return refresh();
 }

@@ -42,17 +42,18 @@ t_game  *game_init(int board_size)
 
 	for (int i = 0; i < board_size; i++)
 	{
-		game->mat[i] = malloc(board_size * sizeof(int));
-		if (!game->mat[i])
-		{
-			i--;
-			while (i > 0)
-			{
-				free(game->mat[i]);
-				i--;
-			}
-			break;
-		}
+        game->mat[i] = calloc(board_size, sizeof(int));
+        if (!game->mat[i])
+        {
+            while (i > 0)
+            {
+                i--;
+                free(game->mat[i]);
+            }
+            free(game->mat);
+            free(game);
+            return NULL;
+        }
 	}
 
 	game->size = board_size;

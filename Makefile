@@ -30,6 +30,14 @@ DEPS_BONUS        =   $(patsubst %.c, $(BUILD_DIR)%.d, $(SRC_BONUS))
 
 SRC =   main.c
 
+#=-=-=-=-=-=-DIRECTION-=-=-=-=-=#
+
+SRC +=  $(addprefix $(DIRECTION_DIR), $(DIRECTION_SRC))
+
+DIRECTION_DIR    =   direction/
+DIRECTION_SRC    =   direction.c \
+					 rotation.c  \
+
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 
 # SRC +=  $(addprefix $(FONCTION_DIR), $(FONCTION_SRC))

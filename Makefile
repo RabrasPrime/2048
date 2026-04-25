@@ -28,7 +28,8 @@ DEPS_BONUS        =   $(patsubst %.c, $(BUILD_DIR)%.d, $(SRC_BONUS))
 
 #=-=-=-=-=-=-ROOT-=-=-=-=-=#
 
-SRC =   main.c
+SRC =   main.c		\
+		ncurses.c
 
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 
@@ -45,7 +46,8 @@ LIB_PATH    =   libft/libft.a
 LIB_PATH    :=  $(addprefix $(LIB_DIR),$(LIB_PATH))
 LIB         =   $(patsubst lib%.a, %, $(notdir $(LIB_PATH)))
 
-# SYS_LIB     =   -lmlx -lX11 -lXext -lm
+SYS_LIB     =   -lncurses
+# -lmlx -lX11 -lXext -lm
 
 INC_DIR     =   include/
 INCLUDES    =   $(INC_DIR) \

@@ -31,6 +31,21 @@ DEPS_BONUS        =   $(patsubst %.c, $(BUILD_DIR)%.d, $(SRC_BONUS))
 SRC =   main.c		\
 		ncurses.c
 
+#=-=-=-=-=-=-DIRECTION-=-=-=-=-=#
+
+SRC +=  $(addprefix $(DIRECTION_DIR), $(DIRECTION_SRC))
+
+DIRECTION_DIR    =   direction/
+DIRECTION_SRC    =   direction.c \
+					 rotation.c  \
+
+#=-=-=-=-=-=-STATUS_GAME-=-=-=-=-=#
+
+SRC +=  $(addprefix $(STATUS_GAME_DIR), $(STATUS_GAME_SRC))
+
+STATUS_GAME_DIR    =   status_game/
+STATUS_GAME_SRC    =   status_game.c \
+
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 
 # SRC +=  $(addprefix $(FONCTION_DIR), $(FONCTION_SRC))

@@ -46,6 +46,13 @@ SRC +=  $(addprefix $(STATUS_GAME_DIR), $(STATUS_GAME_SRC))
 STATUS_GAME_DIR    =   status_game/
 STATUS_GAME_SRC    =   status_game.c \
 
+#=-=-=-=-=-=-GENERATION-=-=-=-=-=#
+
+SRC +=  $(addprefix $(GENERATION_DIR), $(GENERATION_SRC))
+
+GENERATION_DIR    =   generation/
+GENERATION_SRC    =   generation.c \
+
 #=-=-=-=-=-=-FONCTION-=-=-=-=-=#
 
 # SRC +=  $(addprefix $(FONCTION_DIR), $(FONCTION_SRC))

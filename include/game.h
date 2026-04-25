@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ncurses.h>
+#include <limits.h>
 #include <stdlib.h>
 
 enum e_const
@@ -31,3 +32,4 @@ int is_game_over(int **mat, int size);
 /*=-=-=-=-=-=-DRAWING-=-=-=-=-=-=*/
 
 int	draw_game(t_game *game);
+void generate_num(int **mat, int size);

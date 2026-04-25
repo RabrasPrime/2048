@@ -6,6 +6,18 @@
 t_game  *game_init(int board_size)
 {
     t_game  *game;
+    int		val = WIN_VALUE;
+
+    if (val <= 0 || (val & (val - 1)) != 0)
+    {
+    	ft_printf("WIN_VALUE must be a power of 2\n");
+     	return NULL;
+    }
+    if (val > 131072)
+    {
+    	ft_printf("WIN_VALUE can be at most 131072\n");
+     	return NULL;
+    }
 
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -50,6 +62,7 @@ void screen_init(t_game *game)
     init_ncurses_colors();
     timeout(50);
     keypad(stdscr, TRUE);
+    set_escdelay(25);
     draw_game(game);
 }
 
@@ -70,7 +83,7 @@ int main(void)
     t_game  *game;
     int     moved;
 
-    game = game_init(4);
+    game = game_init(5);
     if (!game)
         return (1);
     screen_init(game);
@@ -87,6 +100,8 @@ int main(void)
             moved = to_left(game->mat, game->size, &game->score);
         else if (key == KEY_RIGHT)
             moved = to_right(game->mat, game->size, &game->score);
+        else if (key == 27)
+        	break ;
 
         if (moved)
         {

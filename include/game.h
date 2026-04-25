@@ -3,6 +3,7 @@
 #include <ncurses.h>
 #include <limits.h>
 #include <stdlib.h>
+#include "ft_printf.h"
 
 enum e_const
 {
